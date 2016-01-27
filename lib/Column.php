@@ -18,6 +18,7 @@ class Column
 	const DATETIME	= 4;
 	const DATE		= 5;
 	const TIME		= 6;
+	const BOOLEAN	= 7;
 
 	/**
 	 * Map a type to an column type.
@@ -30,6 +31,8 @@ class Column
 		'date'		=> self::DATE,
 		'time'		=> self::TIME,
 
+		'boolean'	=> self::BOOLEAN,
+		'bit'		=> self::INTEGER,
 		'tinyint'	=> self::INTEGER,
 		'smallint'	=> self::INTEGER,
 		'mediumint'	=> self::INTEGER,
@@ -157,6 +160,7 @@ class Column
 
 		switch ($this->type)
 		{
+			case self::BOOLEAN: return (boolean)$value;
 			case self::STRING:	return (string)$value;
 			case self::INTEGER:	return static::castIntegerSafely($value);
 			case self::DECIMAL:	return (double)$value;
